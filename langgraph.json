@@ -1,0 +1,10 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "main": "./agents/workflow.py:main_workflow",
+    "focus_group_interview": "./agents/focus_group_interview/workflow.py:focus_group_interview_workflow",
+    "marketing": "./agents/marketing/workflow.py:marketing_workflow",
+    "source_person_interview": "./agents/source_person_interview/workflow.py:source_person_interview_workflow"
+  },
+  "env": ".env"
+}

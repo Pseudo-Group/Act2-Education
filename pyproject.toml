@@ -1,19 +1,27 @@
 [project]
-name = "pseudo-education-company"
+name = "pseudo-education"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "Your Name",email = "you@example.com"}
-]
+description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 dependencies = [
+    "langchain>=0.3.23",
+    "langgraph>=0.3.27",
+    "langchain-community>=0.2.17",
+    "python-dotenv>=1.0.1",
+    "pre-commit>=4.2.0",
 ]
 
+[dependency-groups]
+dev = ["ipykernel>=6.29.5", "langgraph-cli[inmem]>=0.2.3"]
 
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.pyright]
+include = ["agents", "tests"]
+exclude = ["**/__pycache__/*", "**/node_modules/*", ".venv", "**/.venv"]
 
-[tool.poetry.group.dev.dependencies]
-ipykernel = "^6.29.5"
+[tool.uv.workspace]
+members = [
+    "agents/marketing",
+    "agents/focus_group_interview",
+    "agents/source_person_interview",
+]
