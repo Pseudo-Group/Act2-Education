@@ -1,9 +1,14 @@
+from __future__ import annotations
+
 from typing import Annotated, TypedDict, List
 
 from langgraph.graph.message import add_messages
 from langchain_core.messages import HumanMessage, AIMessage
 
+from dataclasses import dataclass
 
+
+@dataclass
 class FocusGroupInterviewState(TypedDict):
     """
     포커스 그룹 인터뷰 Workflow의 상태를 정의하는 TypedDict 클래스

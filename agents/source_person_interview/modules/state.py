@@ -1,9 +1,15 @@
+from __future__ import annotations
+
 from typing import Annotated, List, TypedDict
 
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.graph.message import add_messages
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class SourcePersonInterviewState(TypedDict):
     """
     Source Person Interview Workflow의 상태를 정의하는 TypedDict 클래스
