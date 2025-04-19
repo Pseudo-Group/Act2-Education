@@ -27,18 +27,18 @@
 
 
 # def format_marketing_content(
-#     content: str, 
-#     platform: str, 
+#     content: str,
+#     platform: str,
 #     character_limit: int = None
 # ) -> str:
 #     """
 #     마케팅 콘텐츠를 특정 플랫폼에 맞게 포맷팅합니다.
-#     
+#
 #     Args:
 #         content: 원본 마케팅 콘텐츠
 #         platform: 대상 플랫폼 (예: "twitter", "instagram", "facebook", "linkedin")
 #         character_limit: 문자 수 제한 (기본값: None)
-#         
+#
 #     Returns:
 #         포맷팅된 콘텐츠
 #     """
@@ -50,13 +50,13 @@
 #         "linkedin": 3000,
 #         "email": 10000
 #     }
-#     
+#
 #     # 문자 제한 설정
 #     limit = character_limit or platform_limits.get(platform.lower(), None)
-#     
+#
 #     # 콘텐츠 포맷팅
 #     formatted_content = content
-#     
+#
 #     # 플랫폼별 특수 포맷팅
 #     if platform.lower() == "twitter":
 #         # 해시태그 추출 및 최적화
@@ -68,17 +68,17 @@
 #             clean_content = clean_content[:limit - len(" ".join(hashtags)) - 4] + "..."
 #         # 해시태그 추가
 #         formatted_content = clean_content + "\n\n" + " ".join(hashtags)
-#     
+#
 #     elif platform.lower() == "instagram":
 #         # 해시태그 최적화 및 줄바꿈 추가
 #         hashtags = re.findall(r'#\w+', content)
 #         clean_content = re.sub(r'#\w+', '', content).strip()
 #         formatted_content = clean_content + "\n\n" + "\n".join(hashtags)
-#     
+#
 #     # 문자 제한 적용
 #     if limit and len(formatted_content) > limit:
 #         formatted_content = formatted_content[:limit - 3] + "..."
-#     
+#
 #     return formatted_content
 
 
@@ -87,10 +87,10 @@
 # ) -> Dict[str, Any]:
 #     """
 #     마케팅 콘텐츠 성과를 분석합니다.
-#     
+#
 #     Args:
 #         content_metrics: 콘텐츠 성과 지표 목록
-#         
+#
 #     Returns:
 #         분석 결과
 #     """
@@ -98,16 +98,16 @@
 #     total_impressions = sum(item.get("impressions", 0) for item in content_metrics)
 #     total_engagements = sum(item.get("engagements", 0) for item in content_metrics)
 #     total_clicks = sum(item.get("clicks", 0) for item in content_metrics)
-#     
+#
 #     # 평균 참여율 계산
 #     avg_engagement_rate = (total_engagements / total_impressions) if total_impressions > 0 else 0
-#     
+#
 #     # 클릭률(CTR) 계산
 #     ctr = (total_clicks / total_impressions) if total_impressions > 0 else 0
-#     
+#
 #     # 최고 성과 콘텐츠 찾기
 #     best_performing = max(content_metrics, key=lambda x: x.get("engagements", 0), default={})
-#     
+#
 #     return {
 #         "total_impressions": total_impressions,
 #         "total_engagements": total_engagements,
@@ -125,35 +125,35 @@
 # ) -> str:
 #     """
 #     마케팅 캠페인 보고서를 생성합니다.
-#     
+#
 #     Args:
 #         campaign_data: 캠페인 데이터
 #         content_performance: 콘텐츠 성과 데이터
-#         
+#
 #     Returns:
 #         포맷팅된 보고서 문자열
 #     """
 #     report = f"# {campaign_data.get('campaign_name', '마케팅 캠페인')} 보고서\n\n"
 #     report += f"기간: {campaign_data.get('start_date', '')} ~ {campaign_data.get('end_date', '')}\n\n"
-#     
+#
 #     report += "## 캠페인 개요\n"
 #     report += f"{campaign_data.get('description', '')}\n\n"
-#     
+#
 #     report += "## 주요 성과\n"
 #     report += f"- 총 노출 수: {content_performance.get('total_impressions', 0):,}\n"
 #     report += f"- 총 참여 수: {content_performance.get('total_engagements', 0):,}\n"
 #     report += f"- 총 클릭 수: {content_performance.get('total_clicks', 0):,}\n"
 #     report += f"- 평균 참여율: {content_performance.get('average_engagement_rate', 0):.2%}\n"
 #     report += f"- 클릭률(CTR): {content_performance.get('ctr', 0):.2%}\n\n"
-#     
+#
 #     report += "## 채널별 성과\n"
 #     for channel, metrics in campaign_data.get('channel_performance', {}).items():
 #         report += f"### {channel}\n"
 #         report += f"- 노출 수: {metrics.get('impressions', 0):,}\n"
 #         report += f"- 참여 수: {metrics.get('engagements', 0):,}\n"
 #         report += f"- 전환 수: {metrics.get('conversions', 0):,}\n\n"
-#     
+#
 #     report += "## 결론 및 권장사항\n"
 #     report += f"{campaign_data.get('conclusions', '')}\n\n"
-#     
+#
 #     return report

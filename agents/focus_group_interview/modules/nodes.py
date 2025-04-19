@@ -7,13 +7,14 @@
 """
 
 from agents.base_node import BaseNode
+
 # from agents.focus_group_interview.modules.chains import set_question_generation_chain, set_response_analysis_chain
 
 
 # class QuestionGenerationNode(BaseNode):
 #     """
 #     인터뷰 주제와 대상 청중에 적합한 질문을 생성하는 노드
-#     
+#
 #     이 노드는 LangChain의 질문 생성 체인을 활용하여 포커스 그룹 인터뷰에 적합한 질문을 생성합니다.
 #     주어진 인터뷰 주제와 대상 청중에 맞게 질문을 생성하여 Workflow의 다음 단계로 전달합니다.
 #     """
@@ -26,10 +27,10 @@ from agents.base_node import BaseNode
 #     def execute(self, state) -> dict:
 #         """
 #         주어진 상태(state)에서 필요한 정보를 추출하여 질문을 생성하고 결과를 반환합니다.
-#         
+#
 #         Args:
 #             state (dict): Workflow의 현재 상태. interview_topic과 target_audience 정보를 포함함.
-#         
+#
 #         Returns:
 #             dict: 새로 생성된 질문들을 포함한 상태 업데이트
 #         """
@@ -48,7 +49,7 @@ from agents.base_node import BaseNode
 # class ResponseAnalysisNode(BaseNode):
 #     """
 #     인터뷰 응답을 분석하는 노드
-#     
+#
 #     이 노드는 LangChain의 응답 분석 체인을 활용하여 포커스 그룹 인터뷰에서 수집된 응답들을 분석합니다.
 #     응답을 분석하여 주요 통찰과 패턴을 추출하고, 이를 Workflow의 다음 단계로 전달합니다.
 #     """
@@ -61,10 +62,10 @@ from agents.base_node import BaseNode
 #     def execute(self, state) -> dict:
 #         """
 #         주어진 상태(state)에서 인터뷰 응답을 추출하여 분석하고 결과를 반환합니다.
-#         
+#
 #         Args:
 #             state (dict): Workflow의 현재 상태. responses, interview_topic, target_audience 정보를 포함함.
-#         
+#
 #         Returns:
 #             dict: 분석된 결과를 포함한 상태 업데이트
 #         """

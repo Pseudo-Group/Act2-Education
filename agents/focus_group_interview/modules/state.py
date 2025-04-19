@@ -1,11 +1,10 @@
 from __future__ import annotations
 
-from typing import Annotated, TypedDict, List
-
-from langgraph.graph.message import add_messages
-from langchain_core.messages import HumanMessage, AIMessage
-
 from dataclasses import dataclass
+from typing import Annotated, List, TypedDict
+
+from langchain_core.messages import AIMessage, HumanMessage
+from langgraph.graph.message import add_messages
 
 
 @dataclass
@@ -15,7 +14,7 @@ class FocusGroupInterviewState(TypedDict):
 
     포커스 그룹 인터뷰를 위한 Workflow에서 사용되는 상태 정보를 정의합니다.
     LangGraph의 상태 관리를 위한 클래스로, Workflow 내에서 처리되는 데이터의 형태와 구조를 지정합니다.
-    
+
     아래는 예시 상태 변수들입니다. 실제 구현 시 필요에 따라 수정해서 사용해주세요!
     """
 
