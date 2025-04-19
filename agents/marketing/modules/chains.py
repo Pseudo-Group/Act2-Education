@@ -4,8 +4,6 @@ LCEL(LangChain Expression Language)을 사용하여 체인을 구성합니다.
 기본적으로 modules.prompt 템플릿과 modules.models 모듈을 사용하여 LangChain 체인을 생성합니다.
 """
 
-from typing import List
-
 # from langchain.schema.runnable import RunnablePassthrough, RunnableSerializable
 # from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 # from langchain_core.pydantic_v1 import BaseModel, Field

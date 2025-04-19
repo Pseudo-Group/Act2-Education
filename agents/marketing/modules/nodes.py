@@ -6,7 +6,7 @@
 각 노드는 execute 메서드를 구현하여 상태(state)를 입력받아 처리하고, 처리 결과를 새로운 상태 업데이트로 반환합니다.
 """
 
-from agents.base_node import BaseNode
+# from agents.base_node import BaseNode
 
 # from agents.marketing.modules.chains import set_campaign_generation_chain, set_content_creation_chain
 
@@ -15,7 +15,7 @@ from agents.base_node import BaseNode
 # class CampaignGenerationNode(BaseNode):
 #     """
 #     교육 제품/서비스에 적합한 마케팅 캠페인을 생성하는 노드
-#     
+#
 #     이 노드는 LangChain의 캠페인 생성 체인을 활용하여 교육 제품이나 서비스에 적합한 마케팅 전략을 생성합니다.
 #     대상 청중, 제품 정보, 캠페인 목표 등을 고려하여 전략을 수립하고 Workflow의 다음 단계로 전달합니다.
 #     """
@@ -28,10 +28,10 @@ from agents.base_node import BaseNode
 #     def execute(self, state) -> dict:
 #         """
 #         주어진 상태(state)에서 필요한 정보를 추출하여 캠페인 전략을 생성하고 결과를 반환합니다.
-#         
+#
 #         Args:
 #             state (dict): Workflow의 현재 상태. target_audience, product_name, product_description 등의 정보를 포함함.
-#         
+#
 #         Returns:
 #             dict: 생성된 캠페인 전략을 포함한 상태 업데이트
 #         """
@@ -53,7 +53,7 @@ from agents.base_node import BaseNode
 # class ContentCreationNode(BaseNode):
 #     """
 #     마케팅 캠페인에 필요한 콘텐츠를 생성하는 노드
-#     
+#
 #     이 노드는 LangChain의 콘텐츠 생성 체인을 활용하여 마케팅 캠페인에 필요한 다양한 콘텐츠를 생성합니다.
 #     이전 단계에서 생성된 캠페인 전략을 기반으로 각 마케팅 채널에 적합한 콘텐츠를 생성하여 Workflow의 다음 단계로 전달합니다.
 #     """
@@ -66,10 +66,10 @@ from agents.base_node import BaseNode
 #     def execute(self, state) -> dict:
 #         """
 #         주어진 상태(state)에서 필요한 정보를 추출하여 마케팅 콘텐츠를 생성하고 결과를 반환합니다.
-#         
+#
 #         Args:
 #             state (dict): Workflow의 현재 상태. target_audience, product_name, marketing_channels, messages 등의 정보를 포함함.
-#         
+#
 #         Returns:
 #             dict: 생성된 마케팅 콘텐츠를 포함한 상태 업데이트
 #         """

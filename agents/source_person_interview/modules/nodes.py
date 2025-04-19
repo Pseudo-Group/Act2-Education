@@ -6,7 +6,7 @@
 각 노드는 execute 메서드를 구현하여 상태(state)를 입력받아 처리하고, 처리 결과를 새로운 상태 업데이트로 반환합니다.
 """
 
-from agents.base_node import BaseNode
+# from agents.base_node import BaseNode
 
 # from agents.source_person_interview.modules.chains import set_question_preparation_chain, set_insight_extraction_chain
 
@@ -15,7 +15,7 @@ from agents.base_node import BaseNode
 # class QuestionPreparationNode(BaseNode):
 #     """
 #     Source Person Interview를 위한 질문을 준비하는 노드
-#     
+#
 #     이 노드는 LangChain의 질문 준비 체인을 활용하여 Source Person Interview에 적합한 질문을 생성합니다.
 #     인터뷰 주제, 인터뷰 대상자, 전문 분야에 맞게 질문을 생성하여 Workflow의 다음 단계로 전달합니다.
 #     """
@@ -28,10 +28,10 @@ from agents.base_node import BaseNode
 #     def execute(self, state) -> dict:
 #         """
 #         주어진 상태(state)에서 필요한 정보를 추출하여 인터뷰 질문을 준비하고 결과를 반환합니다.
-#         
+#
 #         Args:
 #             state (dict): Workflow의 현재 상태. interview_topic, source_person, expertise_area 정보를 포함함.
-#         
+#
 #         Returns:
 #             dict: 준비된 질문들을 포함한 상태 업데이트
 #         """
@@ -51,7 +51,7 @@ from agents.base_node import BaseNode
 # class InsightExtractionNode(BaseNode):
 #     """
 #     인터뷰 응답에서 통찰을 추출하는 노드
-#     
+#
 #     이 노드는 LangChain의 통찰 추출 체인을 활용하여 Source Person Interview에서 수집된 응답에서 중요한 통찰을 추출합니다.
 #     인터뷰 질문과 응답을 분석하여 교육 콘텐츠 제작에 활용할 수 있는 핵심 통찰을 추출하고, 이를 Workflow의 다음 단계로 전달합니다.
 #     """
@@ -64,10 +64,10 @@ from agents.base_node import BaseNode
 #     def execute(self, state) -> dict:
 #         """
 #         주어진 상태(state)에서 인터뷰 응답과 관련 정보를 추출하여 통찰을 추출하고 결과를 반환합니다.
-#         
+#
 #         Args:
 #             state (dict): Workflow의 현재 상태. responses, questions, interview_topic, expertise_area 정보를 포함함.
-#         
+#
 #         Returns:
 #             dict: 추출된 통찰을 포함한 상태 업데이트
 #         """

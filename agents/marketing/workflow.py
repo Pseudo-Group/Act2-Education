@@ -28,11 +28,11 @@ class MarketingWorkflow(BaseWorkflow):
             CompiledStateGraph: 컴파일된 상태 그래프 객체
         """
         builder = StateGraph(self.state)
-        
+
         # 노드 추가 예시
         # builder.add_node("generate_campaign", CampaignGenerationNode())
         # builder.add_node("create_content", ContentCreationNode())
-        
+
         # 에지 추가 예시 - 아래 코드는 참고용이며 실제 구현 시 주석을 해제하고 사용할 수 있습니다
         # 1. 단순 에지: 시작 노드에서 need_campaign_strategy 함수로 연결
         # builder.add_edge("__start__", need_campaign_strategy)

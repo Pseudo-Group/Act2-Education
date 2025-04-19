@@ -4,8 +4,6 @@ LCEL(LangChain Expression Language)을 사용하여 체인을 구성합니다.
 기본적으로 modules.prompt 템플릿과 modules.models 모듈을 사용하여 LangChain 체인을 생성합니다.
 """
 
-from typing import List
-
 # from agents.focus_group_interview.modules.models import get_openai_model
 # from agents.focus_group_interview.modules.prompts import (
 #     get_question_generation_prompt,
