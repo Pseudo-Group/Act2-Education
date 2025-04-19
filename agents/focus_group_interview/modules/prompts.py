@@ -4,7 +4,7 @@
 각 함수는 특정 작업에 맞는 프롬프트 템플릿을 생성합니다.
 """
 
-from langchain_core.prompts import PromptTemplate
+# from langchain_core.prompts import PromptTemplate
 
 # def get_question_generation_prompt() -> PromptTemplate:
 #     """

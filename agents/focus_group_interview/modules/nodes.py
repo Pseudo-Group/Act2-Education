@@ -6,7 +6,7 @@
 각 노드는 execute 메서드를 구현하여 상태(state)를 입력받아 처리하고, 처리 결과를 새로운 상태 업데이트로 반환합니다.
 """
 
-from agents.base_node import BaseNode
+# from agents.base_node import BaseNode
 
 # from agents.focus_group_interview.modules.chains import set_question_generation_chain, set_response_analysis_chain
 

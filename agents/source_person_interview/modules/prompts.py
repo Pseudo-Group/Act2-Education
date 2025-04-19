@@ -4,7 +4,7 @@
 각 함수는 특정 작업에 맞는 프롬프트 템플릿을 생성합니다.
 """
 
-from langchain_core.prompts import PromptTemplate
+# from langchain_core.prompts import PromptTemplate
 
 # 예시 프롬프트 함수들입니다. 참고용으로 남겨둡니다.
 
