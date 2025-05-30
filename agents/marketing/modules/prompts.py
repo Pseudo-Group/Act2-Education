@@ -123,3 +123,48 @@ def get_write_contents_prompt() -> PromptTemplate:
         - 노션에 글을 쓸거야. 마크다운 문법과 아이콘을 활용해서 눈에 잘 띄는 컨텐츠를 만들어줘.
     """
     return PromptTemplate.from_template(template)
+
+
+def notion_page_creation_prompt() -> PromptTemplate:
+    template = """
+        너는 노션 페이지를 만들어야 해. 주어진 입력에 대해서 JSON body를 만들어줘.
+        입력: {page_content}
+
+        중요 조건:
+        - 절대 간단한 요약 JSON을 출력하지 마. 반드시 Notion API의 완전한 JSON 구조를 따라야 해.
+        - 결과는 JSON 형태로만 출력해줘. 대신 제일 처음과 끝에 코드 블록(```json)은 절대 붙이지 마.**
+        - 임의로 내용을 요약하지 마. 있는 내용 그대로를 포함하는 JSON을 만들어야 해.
+        - children의 paragraph 속성 아래에 'rich_text'를 반드시 넣어야 해.
+        - 글의 내용은 children 아래에 여러 블록으로 적절하게 나뉘어야 해.
+        - 아래는 JSON 예시야 사용자 입력을 바탕으로 해당 JSON 내용을 채워줘. JSON의 형태는 엄격하게 검증해줘.
+        ```
+        "parent": {{ "page_id": "부모 페이지 ID" }},
+        "properties": {{
+            "title": [
+                {{
+                    "type": "text",
+                    "text": {{
+                    "content": "페이지 제목"
+                    }}
+                }}
+            ]
+        }},
+        "children": [
+            {{
+                "object": "block",
+                "type": "paragraph",
+                "paragraph": {{
+                    "rich_text": [
+                        {{
+                            "type": "text",
+                            "text": {{
+                                "content": "문단 내용"
+                            }}
+                        }}
+                    ]
+                }}
+            }}
+        ]
+        ```
+    """
+    return PromptTemplate.from_template(template)

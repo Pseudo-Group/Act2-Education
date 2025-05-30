@@ -6,10 +6,15 @@
 각 노드는 execute 메서드를 구현하여 상태(state)를 입력받아 처리하고, 처리 결과를 새로운 상태 업데이트로 반환합니다.
 """
 
+import json
+import os
+
+import requests
 from langchain_core.documents import Document
 
 from agents.base_node import BaseNode
 from agents.marketing.modules.chains import (
+    create_notion_page_chain,
     map_reduce_summary_chain,
     stuff_summary_chain,
     write_blog_content_chain,
@@ -142,10 +147,34 @@ class NotionWritingNode(BaseNode):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.write_content_chain = write_blog_content_chain()
+        self.create_page_chain = create_notion_page_chain()
+        self.parent_id = os.environ["NOTION_PARENT_ID"]
+        self.api_key = os.environ["NOTION_API_KEY"]
+
+    def create_page(self, payload: dict) -> str:
+        # TODO: retry 코드 추가 필요
+
+        payload["parent"] = {"page_id": self.parent_id}
+
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+            "Notion-Version": "2022-06-28",
+        }
+
+        res = requests.post(
+            "https://api.notion.com/v1/pages", headers=headers, json=payload
+        )
+
+        if res.status_code == 200:
+            return "success ✅"
+        else:
+            return f"failed ❌: {res.status_code}, {res.text}"
 
     def execute(self, state: ContentState) -> dict:
         """
         주어진 상태(state)의 문서 요약을 바탕으로 블로그 컨텐츠를 작성합니다.
+        이후 작성한 컨텐츠를 json형태로 바꾸어 notion api를 통해 notion에 게시합니다.
 
         Args:
             state (ContentState): Workflow의 현재 상태. input_file 정보를 포함.
@@ -156,5 +185,16 @@ class NotionWritingNode(BaseNode):
         page_content = self.write_content_chain().invoke(
             {"document_summary": state["document_summary"]}
         )
+        output_str = self.create_page_chain.invoke(
+            {"page_content": state["page_content"]}
+        )
+        # output_str = re.sub(r"```json|```", "", output_str).strip() # TODO: 필요한지 검증
 
-        return {"page_content": page_content}
+        notion_json = json.loads(output_str)
+        results = self.create_page(notion_json)
+
+        return {
+            "page_content": page_content,
+            "notion_payload": notion_json,
+            "results": results,
+        }

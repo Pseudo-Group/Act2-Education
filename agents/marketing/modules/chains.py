@@ -6,11 +6,12 @@ LCEL(LangChain Expression Language)을 사용하여 체인을 구성합니다.
 
 from langchain.chains.summarize import load_summarize_chain
 from langchain.schema.runnable import RunnableSerializable  # , RunnablePassthrough
-from langchain_core.output_parsers import StrOutputParser
+from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 
 from agents.marketing.modules.models import get_openai_model
 from agents.marketing.modules.prompts import (
     get_write_contents_prompt,
+    notion_page_creation_prompt,
     summary_doc_prompt,
 )
 
@@ -131,3 +132,10 @@ def write_blog_content_chain() -> RunnableSerializable:
     prompt = get_write_contents_prompt()
 
     return prompt | model | StrOutputParser()
+
+
+def create_notion_page_chain() -> RunnableSerializable:
+    model = get_openai_model()
+    prompt = notion_page_creation_prompt()
+
+    return prompt | model | JsonOutputParser()
