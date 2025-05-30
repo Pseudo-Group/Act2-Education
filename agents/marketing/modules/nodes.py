@@ -12,6 +12,7 @@ from agents.base_node import BaseNode
 from agents.marketing.modules.chains import (
     map_reduce_summary_chain,
     stuff_summary_chain,
+    write_blog_content_chain,
 )
 from agents.marketing.modules.state import ContentState
 from agents.marketing.modules.utils import load_pdf_documents
@@ -119,7 +120,7 @@ class DocSummarizationNode(BaseNode):
             state (ContentState): Workflow의 현재 상태. input_file 정보를 포함.
 
         Returns:
-            dict: 생성된 블로그 콘텐츠를 포함한 상태 업데이트
+            dict: 요약된 문서를 포함한 상태 업데이트
         """
         # TODO: pdf 외의 다른 입력도 고려하여 분기를 만들지?
 
@@ -128,3 +129,32 @@ class DocSummarizationNode(BaseNode):
         interview_summary = self.map_reduce_summary_chain.invoke(interview_doc)
         interview_summary = self.stuff_summary_chain.invoke(interview_summary)
         return {"interview_summary": interview_summary}
+
+
+class NotionWritingNode(BaseNode):
+    """
+    노션 컨텐츠 작성 및 업로드 노드
+
+    제공받은 문서(또는 요약)을 바탕으로 Notion에 게시할 블로그 컨텐츠를 작성합니다.
+    작성한 컨텐츠는 Notion API를 사용해 게시합니다.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.write_content_chain = write_blog_content_chain()
+
+    def execute(self, state: ContentState) -> dict:
+        """
+        주어진 상태(state)의 문서 요약을 바탕으로 블로그 컨텐츠를 작성합니다.
+
+        Args:
+            state (ContentState): Workflow의 현재 상태. input_file 정보를 포함.
+
+        Returns:
+            dict: 생성된 블로그 콘텐츠를 포함한 상태 업데이트
+        """
+        page_content = self.write_content_chain().invoke(
+            {"interview_summary": state["interview_summary"]}
+        )
+
+        return {"page_content": page_content}

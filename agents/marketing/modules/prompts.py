@@ -110,3 +110,16 @@ def summary_doc_prompt() -> PromptTemplate:
         {text}
     """
     return PromptTemplate(template=template, input_variables=["text"])
+
+
+def get_write_contents_prompt() -> PromptTemplate:
+    template = """
+        너는 블로그 글을 쓰는 컨텐츠팀에서 근무하고 있어.
+        아래 내용을 확인하고 ux research에 관련된 블로그 컨텐츠를 작성해줘
+        입력: {interview_summary}
+
+        중요 조건:
+        - 다양한 사람들이 이해할 수 있도록 쉽게 써야 해.
+        - 노션에 글을 쓸거야. 마크다운 문법과 아이콘을 활용해서 눈에 잘 띄는 컨텐츠를 만들어줘.
+    """
+    return PromptTemplate.from_template(template)

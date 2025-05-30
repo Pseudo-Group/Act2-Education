@@ -6,11 +6,14 @@ LCEL(LangChain Expression Language)을 사용하여 체인을 구성합니다.
 
 from langchain.chains.summarize import load_summarize_chain
 from langchain.schema.runnable import RunnableSerializable  # , RunnablePassthrough
+from langchain_core.output_parsers import StrOutputParser
 
 from agents.marketing.modules.models import get_openai_model
-from agents.marketing.modules.prompts import summary_doc_prompt
+from agents.marketing.modules.prompts import (
+    get_write_contents_prompt,
+    summary_doc_prompt,
+)
 
-# from langchain_core.output_parsers import JsonOutputParser, StrOutputParser
 # from langchain_core.pydantic_v1 import BaseModel, Field
 
 
@@ -121,3 +124,10 @@ def stuff_summary_chain() -> RunnableSerializable:
         prompt=prompt,
     )
     return chain
+
+
+def write_blog_content_chain() -> RunnableSerializable:
+    model = get_openai_model()
+    prompt = get_write_contents_prompt()
+
+    return prompt | model | StrOutputParser()
