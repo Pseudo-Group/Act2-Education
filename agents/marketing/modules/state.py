@@ -35,5 +35,4 @@ class ContentState(TypedDict):
     input_file: str
     document_summary: Optional[str]
     content: Optional[str]
-    notion_payload: Optional[dict]
     result: Optional[str]

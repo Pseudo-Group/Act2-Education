@@ -195,6 +195,5 @@ class NotionWritingNode(BaseNode):
 
         return {
             "page_content": page_content,
-            "notion_payload": notion_json,
             "results": results,
         }
