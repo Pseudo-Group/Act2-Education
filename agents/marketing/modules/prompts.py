@@ -4,7 +4,7 @@
 각 함수는 특정 작업에 맞는 프롬프트 템플릿을 생성합니다.
 """
 
-# from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 # 예시 함수들입니다. 참고용으로 남겨둡니다.
 
@@ -101,3 +101,12 @@
 #     ...
 #     """
 #     return PromptTemplate.from_template(template)
+
+
+def summary_doc_prompt() -> PromptTemplate:
+    template = """
+        다음 문서를 확인하고 정리해줘.
+        문서의 핵심 요약과, 주요 질문사항을 포함하여 정리해줘.
+        {text}
+    """
+    return PromptTemplate(template=template, input_variables=["text"])

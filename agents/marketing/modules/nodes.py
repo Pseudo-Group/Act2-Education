@@ -6,9 +6,15 @@
 각 노드는 execute 메서드를 구현하여 상태(state)를 입력받아 처리하고, 처리 결과를 새로운 상태 업데이트로 반환합니다.
 """
 
-# from agents.base_node import BaseNode
+from langchain_core.documents import Document
 
-# from agents.marketing.modules.chains import set_campaign_generation_chain, set_content_creation_chain
+from agents.base_node import BaseNode
+from agents.marketing.modules.chains import (
+    map_reduce_summary_chain,
+    stuff_summary_chain,
+)
+from agents.marketing.modules.state import ContentState
+from agents.marketing.modules.utils import load_pdf_documents
 
 # 아래는 구현 예정인 노드 클래스들입니다. 실제 구현 시 주석을 해제하고 사용하면 됩니다.
 
@@ -86,3 +92,39 @@
 #
 #         # 생성된 마케팅 콘텐츠를 새로운 상태 업데이트로 반환
 #         return {"messages": marketing_content}
+
+
+class DocSummarizationNode(BaseNode):
+    """
+    문서를 요약해주는 노드
+
+    필요에따라 map reduce 방식, stuff 방식 혹은 둘 모두를 사용하여 문서를 요약하여 state에 추가합니다.
+    """
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.map_reduce_summary_chain = map_reduce_summary_chain()
+        self.stuff_summary_chain = stuff_summary_chain()
+
+    def load_pdf(input_file: str) -> list[Document]:
+        return load_pdf_documents(input_file)
+
+    def execute(self, state: ContentState) -> dict:
+        """
+        주어진 상태(state)에 포함된 문서명(str)을 가지고 문서를 열람한 뒤 요약합니다.
+
+        llm의 버전에 따라 다르지만 gpt기준 토큰 수 제한이 있어 map reduce를 먼저 수행한 뒤 stuff로 한번 더 요약합니다.
+
+        Args:
+            state (ContentState): Workflow의 현재 상태. input_file 정보를 포함.
+
+        Returns:
+            dict: 생성된 블로그 콘텐츠를 포함한 상태 업데이트
+        """
+        # TODO: pdf 외의 다른 입력도 고려하여 분기를 만들지?
+
+        interview_doc = self.load_pdf(state.get("input_file"))
+
+        interview_summary = self.map_reduce_summary_chain.invoke(interview_doc)
+        interview_summary = self.stuff_summary_chain.invoke(interview_summary)
+        return {"interview_summary": interview_summary}
