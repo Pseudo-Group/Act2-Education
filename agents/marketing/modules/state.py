@@ -33,7 +33,7 @@ class MarketingState(TypedDict):
 @dataclass
 class ContentState(TypedDict):
     input_file: str
-    interview_summary: Optional[str]
+    document_summary: Optional[str]
     content: Optional[str]
     notion_payload: Optional[dict]
     result: Optional[str]

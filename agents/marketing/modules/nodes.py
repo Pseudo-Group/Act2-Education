@@ -126,9 +126,9 @@ class DocSummarizationNode(BaseNode):
 
         interview_doc = self.load_pdf(state.get("input_file"))
 
-        interview_summary = self.map_reduce_summary_chain.invoke(interview_doc)
-        interview_summary = self.stuff_summary_chain.invoke(interview_summary)
-        return {"interview_summary": interview_summary}
+        document_summary = self.map_reduce_summary_chain.invoke(interview_doc)
+        document_summary = self.stuff_summary_chain.invoke(document_summary)
+        return {"document_summary": document_summary}
 
 
 class NotionWritingNode(BaseNode):
@@ -154,7 +154,7 @@ class NotionWritingNode(BaseNode):
             dict: 생성된 블로그 콘텐츠를 포함한 상태 업데이트
         """
         page_content = self.write_content_chain().invoke(
-            {"interview_summary": state["interview_summary"]}
+            {"document_summary": state["document_summary"]}
         )
 
         return {"page_content": page_content}
