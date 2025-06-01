@@ -6,7 +6,6 @@
 각 노드는 execute 메서드를 구현하여 상태(state)를 입력받아 처리하고, 처리 결과를 새로운 상태 업데이트로 반환합니다.
 """
 
-import json
 import os
 
 import requests
@@ -112,7 +111,7 @@ class DocSummarizationNode(BaseNode):
         self.map_reduce_summary_chain = map_reduce_summary_chain()
         self.stuff_summary_chain = stuff_summary_chain()
 
-    def load_pdf(input_file: str) -> list[Document]:
+    def load_pdf(self, input_file: str) -> list[Document]:
         return load_pdf_documents(input_file)
 
     def execute(self, state: ContentState) -> dict:
@@ -182,16 +181,13 @@ class NotionWritingNode(BaseNode):
         Returns:
             dict: 생성된 블로그 콘텐츠를 포함한 상태 업데이트
         """
-        page_content = self.write_content_chain().invoke(
+        page_content = self.write_content_chain.invoke(
             {"document_summary": state["document_summary"]}
         )
-        output_str = self.create_page_chain.invoke(
-            {"page_content": state["page_content"]}
-        )
+        output_json = self.create_page_chain.invoke({"page_content": page_content})
         # output_str = re.sub(r"```json|```", "", output_str).strip() # TODO: 필요한지 검증
 
-        notion_json = json.loads(output_str)
-        results = self.create_page(notion_json)
+        results = self.create_page(output_json)
 
         return {
             "page_content": page_content,
