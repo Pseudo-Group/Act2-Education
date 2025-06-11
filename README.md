@@ -4,7 +4,7 @@ AI 기반 교육 시스템
 
 ## 프로젝트 소개
 
-Pseudo Education Company는 LangGraph와 LangChain을 활용한 AI 기반 교육 시스템입니다. 이 프로젝트는 교육 콘텐츠를 자동으로 생성하고 관리할 수 있는 도구를 제공합니다.
+Act2.Education는 LangGraph와 LangChain을 활용한 AI 기반 교육 시스템입니다. 이 프로젝트는 교육 콘텐츠를 자동으로 생성하고 관리할 수 있는 도구를 제공합니다.
 
 ### 주요 기능
 
