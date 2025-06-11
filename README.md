@@ -1,4 +1,4 @@
-# Pseudo Education Company
+# Act2.Education
 
 AI 기반 교육 시스템
 
