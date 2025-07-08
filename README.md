@@ -27,8 +27,8 @@ Act 2: Education는 LangGraph와 LangChain을 활용한 AI 기반 교육 시스�
 #### 1. 저장소 클론
 
 ```bash
-$ git clone https://github.com/Pseudo-Group/Pseudo-Education.git
-$ cd pseudo-education-company
+$ git clone https://github.com/Proact0/Act2-Marketing.git
+$ cd Act2-Marketing
 ```
 
 #### 2. uv 설치 (아직 설치되지 않은 경우)

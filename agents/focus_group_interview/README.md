@@ -2,7 +2,7 @@
 
 ## 개요
 
-이 모듈은 Pseudo Education Company의 포커스 그룹 인터뷰 진행 및 분석을 담당하는 LangGraph Workflow입니다. 교육 콘텐츠 개발을 위한 인터뷰 질문 생성, 응답 분석, 통찰 추출 기능을 제공합니다.
+이 모듈은 Act2: Marketing의 포커스 그룹 인터뷰 진행 및 분석을 담당하는 LangGraph Workflow입니다. 교육 콘텐츠 개발을 위한 인터뷰 질문 생성, 응답 분석, 통찰 추출 기능을 제공합니다.
 
 ## 주요 노드
 
